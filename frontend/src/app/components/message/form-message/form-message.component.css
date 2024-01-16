@@ -1,0 +1,14 @@
+main { overflow-y: visible }
+:host {
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.3);
+  
+}
+textarea {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

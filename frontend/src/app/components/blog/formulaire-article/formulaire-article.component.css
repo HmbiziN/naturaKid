@@ -1,0 +1,29 @@
+
+.imgLogo{
+    margin-top: 3em;
+    margin-right: 3em;
+    max-height: 650px;
+}
+.circle-answer{
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding: 3px;
+    height: 31px;
+    width: 31px;
+    color: white;
+    border: none;
+    margin-right: 1em;
+    font-size: 12px;
+}
+.circle-answer-border{
+    border: 2px blue solid;
+}
+.yes{
+    background-color: #04A632;
+}
+.no{
+    background-color: #EF4657;
+}

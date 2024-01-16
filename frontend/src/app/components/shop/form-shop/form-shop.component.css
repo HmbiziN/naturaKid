@@ -1,0 +1,47 @@
+.contact-container form{
+    padding-top: 50px;
+    width: 700px;
+    margin: 0 auto;
+}
+textarea{
+    font-size: 1.3rem;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+.contact-container form input{
+    padding: 0 10px;
+}
+/* @media screen and(max-width: 800px){
+    .contact-container form{
+        width: 90%;
+    }
+    textarea{
+        width: 50%;
+    }
+} */
+a{
+    text-decoration: none;
+    color: white;
+}
+.error{
+    color: red;
+    font-size: 12px;
+}
+input{
+    margin: 5px;
+}
+.fs{
+    font-size: 20px;
+}
+.my-select-container {
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: visible;
+    position: relative;
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: inset 1px 0px 4px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    margin-right: 1em;
+  }

@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center bg-yellow p-3">
+  <div>
+    <h5>Partez à l'aventure en famille</h5>
+    <p class="text-center">Profitez sereinement de votre ballade sur des parcours adaptés à l'âge de votre enfant</p>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <img id="homePicture" class="pr" src="assets/images/doloR.jpg" alt="">
+</div>
+<div class="d-flex flex-wrap justify-content-center bg-light p-3 pa div-form align-items-center br-8">
+  <p>Votre inscription vous donnera la possibilité de télécharger les parcours et les fiches.<br>
+    Vous pourrez également ajouter de nouveaux parcours.<br>
+    Entrez une adresse mail valide<br>
+    Entrez un mot de passe composé d'au moins 6 caractères (chiffres et lettres)
+  </p>
+  <form [formGroup]="formI" class="flex-column">
+    <div class="d-flex flex-column">
+      <input type="text" name="name" id="name" class="flex-1" placeholder="Nom" [formControl]="name">
+      <div class="error" *ngIf="name.dirty && !name.valid">
+        <p *ngIf="name.hasError('required')">
+          Le nom est obligatoire!
+        </p>
+        <p *ngIf="!name.hasError('required')">
+          Le nom doit comporter au minimum 3 caractères
+        </p>
+      </div>
+      <input type="mail" name="mail" id="mail" class="flex-1" placeholder="Email" [formControl]="mail">
+      <div class="error" *ngIf="mail.dirty && !mail.valid">
+        <p *ngIf="mail.hasError('required')">
+          Le mail est obligatoire!
+        </p>
+        <p *ngIf="mail.hasError('email')">
+          Le mail doit être valide!
+        </p>
+      </div>
+      <input type="password" name="password" id="password" class="flex-1" placeholder="Mot de passe"
+        [formControl]="password">
+      <div class="error" *ngIf="password.dirty && !password.valid">
+        <p *ngIf="password.hasError('required')">
+          Le mot de passe est obligatoire!
+        </p>
+        <p *ngIf="!password.hasError('required')">
+          Le mot de passe doit comporter au minimum 6 caractères
+        </p>
+      </div>
+    </div>
+    <div>
+      <label for="">En continuant à utiliser Natura-kid, vous acceptez nos
+        <span [routerLink]="['/page_mention']" class="text_blue c-pointer">Conditions générales et Politique de confidentialité</span> </label>
+       <input type="radio" class="checkbox">
+      <button class="button_blue txt_light mt-2" (click)="registration()">S'inscrire</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger pa" role="alert">
+  <h4 class="alert-heading">Oh oh</h4>
+  <p>Votre inscription n'a pas fonctionné 🙄</p>
+  <hr>
+  <p class="mb-0">Veuillez remplir tous les champs pour valider l'inscription</p>
+  <button class="btn btn-outline-secondary" (click)="errorMessage = false">Fermer</button>
+</div>

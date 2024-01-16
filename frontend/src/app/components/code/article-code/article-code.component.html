@@ -1,0 +1,39 @@
+<div class="d-flex flex-wrap justify-content-center">
+    <div>
+        <h2 class="text-center mt-3 fw-bold text_dark_blue">L'abbatiale Saint-Austremoine</h2>
+    </div>
+    <div class="d-flex justify-content-center">
+        <img src="assets/images/abbatiale.jpg" alt="" class="col-2 mt-3">
+    </div>
+    <div>
+        <div class="my-4 text-center">
+            <h5 class="fw-bold">A toi de jouer!</h5>
+            <p>Sais tu quelle est la hauteur de l'abbatiale?😎 </p>
+            <div class="text-center">
+                <button class="me-2 button_blue" (click)="wrongOne()">12m</button>
+                <button class="me-2 button_blue" (click)="wrongOne()">20m</button>
+                <button class="button_blue" (click)="rightOne()">17m</button>
+                <p *ngIf="rightAnswer1">Bravo!🎉</p>
+                <p *ngIf="wrongAnswer1">Mauvaise réponse😒</p>
+            </div>
+            <p class="mt-4">Mais qui était Saint Austremoine? </p>
+            <div class="text-center">
+                <button class="me-2 button_blue" (click)="rightTwo()">Un evêque</button>
+                <button class="me-2 button_blue" (click)="wrongTwo()">Un chatelain</button>
+                <button class="button_blue" (click)="wrongTwo()">Un paysan</button>
+                <p *ngIf="rightAnswer2">Bravo!🎉</p>
+                <p *ngIf="wrongAnswer2">Mauvaise réponse😒</p>
+            </div>
+            <p class="mt-4">Les chapiteaux des chapelles qui entourent le choeur abritent des griffons</p>
+            <img src="assets/images/griffon.jpg" alt="" class="col-3">
+            <p>Le griffon est un animal croisé entre deux espèces. Lesquelles? </p>
+            <div class="text-center">
+                <button class="me-2 button_blue" (click)="wrongThree()">Mi-aigle mi-mouton</button>
+                <button class="me-2 button_blue" (click)="rightThree()">Mi-aigle mi-lion</button>
+                <button class="button_blue" (click)="wrongThree()">Mi-aigle mi-cheval</button>
+                <p *ngIf="rightAnswer3">Bravo!🎉</p>
+                <p *ngIf="wrongAnswer3">Mauvaise réponse😒</p>
+            </div>
+    </div>
+</div>
+

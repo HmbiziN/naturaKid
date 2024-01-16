@@ -1,0 +1,114 @@
+<h3 class="text_dark_blue text-center mt-2 fw-bold "><img class="imgIcone" src="assets/images/globe.svg"
+    alt="globe">
+  Les parcours</h3>
+  <div class="d-flex justify-content-center bg-yellow p-3">
+    <div class="">
+      <h5 class="h5-bandeau">Profitez de votre randonnée</h5>
+      <p *ngIf="filterAge === 2" class="text-center">Retrouvez l'intégralité de nos parcours section primaire</p>
+      <p *ngIf="filterAge === 1" class="text-center">Retrouvez l'intégralité de nos parcours section maternelle</p>
+      <p *ngIf="filterAge === 3" class="text-center">Retrouvez l'intégralité de nos parcours section collège</p>
+    </div>
+  </div>
+<div class="container-fluid">
+    <div class="d-flex flex-wrap justify-content-around">
+        <div id="map" class="br-8"></div>
+    <div>
+        <!--  -->
+        <h5 class="txt_yellow me-3" *ngIf="filterAge === 3">Filtres: parcours pour les plus de 10 ans</h5>
+        <h5 class="txt_yellow me-3" *ngIf="filterAge === 2">Filtres: parcours pour les enfants de 7/10 ans</h5>
+        <h5 class="txt_yellow me-3" *ngIf="filterAge === 1">Filtres: parcours pour les enfants de 3/6ans</h5>
+      <select name="filterByAge" id="" class="my-select-container me-2" data-toggle="tooltip" data-placement="right"
+        title="Filtrer par âge">
+        <option value="" (click)="filterByAge(1, map)">3/6 ans</option>
+        <option value="" (click)="filterByAge(2, map)">7/10 ans</option>
+        <option value="" (click)="filterByAge(3, map)">+ 10 ans</option>
+        <option value="" (click)="showIteneraryService(map)">Voir tout</option>
+      </select>
+      <select name="filterByComplexity" id="" class="my-select-container me-2" data-toggle="tooltip"
+        data-placement="right" title="Filtrer par difficulté">
+        <option value="" (click)="filterByComplexity(1)">Facile</option>
+        <option value="" (click)="filterByComplexity(2)">Moyen</option>
+        <option value="" (click)="filterByComplexity(3)">Difficile</option>
+        <!-- <option value="" (click)="showIteneraryService(map)">Voir tout</option> -->
+      </select>
+      <!-- <select name="filterByLabel" id="" class="my-select-container me-2">
+        <option value="" (click)="filterByLabelTrue()">Labellisés</option>
+        <option value="" (click)="filterByLabelFalse()">Non lablélisé</option>
+        <option value="" (click)="showIteneraryService(map)">Voir tout</option>
+      </select> -->
+      <button class="button_yellow" (click)="getItineraryWithFilter()">Rechercher</button><br>
+      <input type="search" placeholder="Rechercher une ville" [(ngModel)]="citySearch" (input)="updateFilterCity()">
+      <div *ngIf="itineraryIsNull">
+        <p>Il n'y a pas encore de parcours correspondant à vos critères de recherche</p>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center mt-3" *ngFor="let i of itenerary | paginate: { itemsPerPage: 3, currentPage: cp }">
+        <div class="card mb-3 shadow-lg p-3 mb-3 bg-body rounded " style="max-width: 900px;">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img src="/api/itinerary/read_img/{{i.img}}" class="img-fluid rounded-start ms-1" alt="{{i.img}}"style="height: 216px; width: 290px;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <div class="d-flex justify-content-around">
+                  <p class="card-subtitle circle-distance bg-yellow" data-toggle="tooltip" data-placement="top"
+                    title="Distance">
+                    {{i.distance}}km</p>
+                  <h6 class="card-subtitle mb-2 circle-age" *ngIf="i.age === 1" data-toggle="tooltip"
+                    data-placement="top" title="Age">3/6</h6>
+                  <h6 class="card-subtitle mb-2 circle-age" *ngIf="i.age === 2" data-toggle="tooltip"
+                    data-placement="top" title="Age">7/10</h6>
+                  <h6 class="card-subtitle mb-2 circle-age" *ngIf="i.age === 3" data-toggle="tooltip"
+                    data-placement="top" title="Age">10+</h6>
+                  <h6 class="card-subtitle mb-2 circle-complexity complexity-1" *ngIf="i.complexity === 1"
+                    data-toggle="tooltip" data-placement="top" title="Difficulté"></h6>
+                  <h6 class="card-subtitle mb-2 circle-complexity complexity-2" *ngIf="i.complexity === 2"
+                    data-toggle="tooltip" data-placement="top" title="Difficulté"></h6>
+
+                  <h6 class="card-subtitle mb-2 circle-complexity complexity-3" *ngIf="i.complexity === 3"
+                    data-toggle="tooltip" data-placement="top" title="Difficulté"></h6>
+                    <p *ngIf="i.label"><span class="badge bg-warning text-dark mt-2 ms-1">Labellisé</span>
+                    </p>
+                    <p *ngIf="!i.label"><span class="badge bg-primary text-dark mt-2 ms-1">Non Labellisé</span>
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title text_dark_blue">{{i.title}}</h5>
+                  <p class="text-muted">{{i.departure}}</p>
+                </div>
+
+                <p class="card-text">{{i.content| slice:0:200}}...</p>
+                <div class="footer">
+                  <button class="button_yellow" data-toggle="tooltip" data-placement="top" title="Voir le parcours"
+                    (click)="getItineraryDetail(i.id)">Voir</button>
+                  <a *ngIf="isAdmin" (click)="messageDeleteItinerary(i.id)"><img src="assets/images/trash-alt-solid.svg"
+                      class="imgIcone c-pointer ms-2" alt="" data-toggle="tooltip" data-placement="top"
+                      title="Supprimer le parcours"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <pagination-controls (pageChange)="cp = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+<div>
+    <div *ngIf="idISelected" class="box-control-container p-fixed">
+        <div class="d-flex flex-column box-control-message">
+          <img class="imgIcone close c-pointer" src="assets/images/times-circle-solid.svg" alt="close"
+                (click)="btnNo()">
+            <p class="text-center mt-3" >Attention vous êtes sur le point de supprimer un parcours</p>
+        <p class="text-center mt-3">Souhaitez vous confirmer ce choix</p>
+        <div class="d-flex justify-content-center">
+          <button class="button_yellow me-2" (click)="deleteItinerary(idISelected)">Oui</button>
+        <button class="button_yellow" (click)="btnNo()">Non</button>
+        </div>
+        </div>
+      </div>
+      
+      
+      <!--  -->
+      <div *ngIf="itinerarySelectorShown" class=" box-control-container p-fixed">
+        <app-detail-itinerary class="box-control" [itinerary]="itinerary" (validate)="closeItinerarySelect(true)" (cancel)="closeItinerarySelect(false)">
+        </app-detail-itinerary>

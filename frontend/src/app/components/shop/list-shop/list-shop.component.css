@@ -1,0 +1,17 @@
+.my-select-container {
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: visible;
+    position: relative;
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: inset 1px 0px 4px rgba(0, 0, 0, 0.25);
+    background-color: white;
+  }
+  .imgCard{
+    width: 286px;
+    height: 190px;
+}   
+.smallPolice{
+    font-size: 12px;
+}

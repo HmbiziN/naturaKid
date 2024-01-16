@@ -1,0 +1,48 @@
+<div id="map"></div>
+<div class="div-title">
+    <h3 class="text_dark_blue fw-bold"><img src="assets/images/pinForm.svg" class="imgIcone" alt=""> Ajouter un point d'intérêt lié à un parcours</h3>
+</div>
+<div class="div-address">
+    <input type="text" [(ngModel)]="address" name="" id="" placeholder="Ville">
+    <button class="button_yellow ms-2" (click)="geocode(address, map)">Appliquer</button>
+</div>
+<form [formGroup]="newPil">
+    <div class="form-container">
+        <div>
+            <p ngDefaultControl formControlName="city" [(ngModel)]="city">Ville: {{address}}</p>
+        </div>
+        <label for="">Catégorie</label>
+        <select name="" id="" data-toggle="tooltip" data-placement="top" title="Catégorie" >
+            <option value="{{c.name}}"*ngFor="let c of category" (click)="selectCategory(c.name)">{{c.name}}</option>
+        </select> <br>
+        <label for="">Lié au parcours : </label>
+        <select name="" id="" data-toggle="tooltip" data-placement="top" title="Catégorie" >
+            <option value="{{i.id}}"*ngFor="let i of itinerary" (click)="selectI(i.id)">{{i.title}}  (à : {{i.departure}})</option>
+        </select>
+        <!-- <select name="" id="" data-toggle="tooltip" data-placement="top" title="Catégorie" >
+            <option value="{{c.name}}"*ngFor="let c of category" formControlName="categorySelected" [(ngModel)]="categorySelected" data-toggle="tooltip" data-placement="top" title="{{c.name}}">{{c.name}}</option>
+        </select> -->
+        <div>
+            <input type="text" name="" id="" placeholder="Nom" class="my-3" ngDefaultControl formControlName="name" [(ngModel)]="name">
+        </div>
+        <div>
+            <input type="text" name="" id="" placeholder="Adresse" class="my-3" ngDefaultControl formControlName="street" [(ngModel)]="street">
+        </div>
+        <div>
+            <input type="text" name="" id="" placeholder="Code postal" class="my-3" ngDefaultControl formControlName="cp" [(ngModel)]="cp">
+        </div>
+        <div>
+            <input type="text" name="" id="" placeholder="Site internet" class="my-3" ngDefaultControl formControlName="url" [(ngModel)]="url">
+        </div>
+        <div>
+            <textarea name="" id="" cols="30" rows="5" placeholder="petite description, explication simple du lien avec le parcours" [(ngModel)]="content" ngDefaultControl formControlName="content"></textarea>
+        </div>
+        
+    <div class="hidden">
+        <input type="text" value="" placeholder="lat" formControlName="lat" [(ngModel)]="lat">
+        <input type="text" value="" placeholder="lng" formControlName="lng" [(ngModel)]="lng">
+      </div>
+      <button class="mt-4 button_yellow" (click)="submit()">Valider</button>
+    </div>
+</form>
+

@@ -1,0 +1,106 @@
+<div class="d-flex justify-content-end">
+  <button class="button_yellow" (click)="backToList()">Retour à la liste</button>
+</div>
+
+<div class="d-flex">
+
+  <div class="col-5 br-8" id="map"></div>
+  <div class="col-7 ms-2 mt-4 d-flex  justify-content-center ms-4 ">
+
+    <div class="flex-column mt-5">
+      <h3 class="text_dark_blue text-center fw-bold"><img src="assets/images/street-view-solid.svg" class="imgIcone"
+          alt=""> {{title|uppercase}}</h3>
+      <div class="mt-4">
+        <div class="d-flex">
+          <div class="d-flex">
+            <p class="circle-age" *ngIf="age === 1" data-toggle="tooltip" data-placement="top" title="Age">3/6</p>
+            <p class="circle-age" *ngIf="age === 2" data-toggle="tooltip" data-placement="top" title="Age">7/10</p>
+            <p class="circle-age" *ngIf="age === 3" data-toggle="tooltip" data-placement="top" title="Age">+10</p>
+          </div>
+          <div class="d-flex">
+            <label class="me-2 fw-bold">Difficulté: </label>
+            <p class="circle-complexity complexity-1" *ngIf="complexity === 1" data-toggle="tooltip"
+              data-placement="top" title="Facile"></p>
+            <p class="circle-complexity complexity-2" *ngIf="complexity === 2" data-toggle="tooltip"
+              data-placement="top" title="Moyenne"></p>
+            <p class="circle-complexity complexity-3" *ngIf="complexity === 3" data-toggle="tooltip"
+              data-placement="top" title="Difficile"></p>
+          </div>
+          <div class="d-flex me-2">
+            <label class="fw-bold">Distance : </label>
+            <p id="distance"></p>
+          </div>
+          <div class="d-flex me-2">
+            <label class="fw-bold">Dénivelé : </label>
+            <p id="denivele"></p>
+          </div>
+
+          <div *ngIf="isConnected">
+            <img *ngIf="isFavoris" class="imgIcone cursor-pointer" src="assets/images/heart-solid.svg" alt=""
+              data-toggle="tooltip" data-placement="top" title="Parcours favoris">
+          </div>
+
+        </div>
+        <p class="">{{content}}</p>
+        <div class="div-button mt-5" *ngIf="isConnected">
+          <button class="button_success" (click)="downloadGpx(gpx)" data-toggle="tooltip" data-placement="right"
+            title="Télécharger le gpx">GPX</button>
+          <button class="button_success" (click)="generatePdf()" data-toggle="tooltip" data-placement="right"
+            title="Télécharger le pdf">PDF</button>
+          <button class="button_success" *ngIf="!isFavoris" (click)="addFavoris(id)">Ajouter aux favoris</button>
+          <button class="button_success" *ngIf="isFavoris" (click)="deleteFavoris(fId)">Retirer des favoris</button>
+        </div>
+        <div class="" *ngIf="!isConnected">
+          <div class="d-flex">
+          <p class="fst-italic">Pour télécharger le parcours en format GPX et/ou PDF connectez vous!</p>
+          <button class="button_blue" [routerLink]="['/login']">Connexion</button>
+          <button class="button_blue" [routerLink]="['/registration']">Inscription</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 *ngIf="!picNull" class="text_dark_blue text-center fw-bold mb-3"><img src="assets/images/street-view-solid.svg"
+    class="imgIcone" alt=""> A proximité de ce parcours : </h3>
+<div class="d-flex justify-content-around mt-5">
+  <div class="card bg-transparent" style="width: 200px; height: 150px;" *ngFor="let pic of pics">
+    <img class="imgCard" *ngIf="pic.category === 'bar'" src="assets/images/beer-solid.svg" class="card-img-top"
+      alt="icone biere">
+    <img class="imgCard" *ngIf="pic.category === 'bibliothèque'" src="assets/images/book-solid.svg" class="card-img-top"
+      alt="icone livre">
+    <img class="imgCard" *ngIf="pic.category === 'magasin'" src="assets/images/shopping-bag-solid.svg"
+      class="card-img-top" alt="icone magasin">
+    <img class="imgCard" *ngIf="pic.category === 'restaurant'" src="assets/images/utensils-solid.svg"
+      class="card-img-top" alt="icone couverts">
+    <img class="imgCard" *ngIf="pic.category === 'hotel'" src="assets/images/hotel-solid.svg" class="card-img-top"
+      alt="icone hotel">
+    <img class="imgCard" *ngIf="pic.category === 'château'" src="assets/images/fort-awesome-brands.svg"
+      class="card-img-top" alt="icone chateau">
+    <img class="imgCard" *ngIf="pic.category === 'musée'" src="assets/images/paint-brush-solid.svg" class="card-img-top"
+      alt="icone musée">
+    <img class="imgCard" *ngIf="pic.category === 'parc d\'attraction'" src="assets/images/fan-solid.svg"
+      class="card-img-top" alt="icone attraction">
+    <img class="imgCard" *ngIf="pic.category === 'parc animalier'" src="assets/images/cat-solid.svg"
+      class="card-img-top" alt="icone animal">
+    <div class="card-body justify-content-center">
+      <p class="card-text">{{pic.category}}</p>
+      <p class="card-text">{{pic.name}}</p>
+      <p class="card-text">{{pic.street}}<br>{{pic.cp}} {{pic.city}}</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="isVisible" class="message">
+  <img class="imgIcone close" src="assets/images/times-circle-solid.svg" alt="close" (click)="closeMessage()">
+  <div class="d-flex flex-column ">
+    <p class="text-center mt-3">C'est dans la boîte!</p>
+    <p class="text-center mt-3">Vous pouvez retrouver ce parcours dans votre liste de favoris</p>
+  </div>
+</div>
+<div *ngIf="deleteIsVisible" class="message">
+  <img class="imgIcone close" src="assets/images/times-circle-solid.svg" alt="close" (click)="closeMessage()">
+  <div class="d-flex flex-column ">
+    <p class="text-center mt-3">C'est noté!</p>
+    <p class="text-center mt-3">Ce parcours est désormais retiré de votre liste de favoris</p>
+  </div>
+</div>

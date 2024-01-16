@@ -1,0 +1,73 @@
+    <!-- <h3 class="text_dark_blue fw-bold text-center">Création d'article</h3> -->
+    <div class="d-flex justify-content-center align-items-center">
+      <img src="assets/images/edit-solid.svg" class="imgIcone me-2" alt="">
+      <h2 class="text_dark_blue fw-blod text-center mt-2 ">Création d'article</h2>
+    
+    </div>
+<div class="d-flex flex-wrap">
+
+  <div class="d-flex flex-column col-9 txt_light align-items-center">
+    <form [formGroup]="newArticle">
+      <div>
+        <input type="text" placeholder="Titre de l'article" class="my-4" formControlName="title" [(ngModel)]="title">
+      </div>
+      <select name="" id="" ngDefaultControl formControlName="categorie" >
+        <option value="conseil"(click)="categorieSelected('conseil')" >Conseil</option>
+        <option value="materiel"(click)="categorieSelected('materiel')" >materiel</option>
+        <option value="activite"(click)="categorieSelected('activite')" >activite</option>
+        <option value="activite"(click)="categorieSelected('carte')" >Carte</option>
+        <option value="autre"(click)="categorieSelected('autre')" >autre</option>
+      </select>
+      <div class="mt-3">
+        <textarea placeholder="Résumé de l'article" cols="50" rows="5" class="mb-4" formControlName="abstract" [(ngModel)]="abstract"></textarea>
+      </div>
+      <div>
+        <textarea placeholder="Paragraphe un" cols="50" rows="5" class="mb-4" formControlName="paragraph_one" [(ngModel)]="paragraph_one"></textarea>
+      </div>
+      <div>
+        <textarea placeholder="Paragraphe deux" cols="50" rows="5" class="mb-4" formControlName="paragraph_two" [(ngModel)]="paragraph_two"></textarea>
+      </div>
+      <div>
+        <textarea placeholder="Paragraphe trois" cols="50" rows="5" class="mb-4" formControlName="paragraph_three" [(ngModel)]="paragraph_three"></textarea>
+      </div>
+      <div class="mt-2">
+        <label class="me-2 text-primary" ngDefaultControl formControlName="img">img</label>
+        <input type="file"
+        (change)="onimgSelected($event)"
+        
+        ngDefaultControl formControlName="img"
+        class="inputFile"> 
+
+      </div>
+      <div class="mt-2">
+        <label class="me-2 text-primary" ngDefaultControl formControlName="img2">img2</label>
+        <input type="file"
+        (change)="onimgSelected2($event)"
+        
+        ngDefaultControl formControlName="img"
+        class="inputFile"> 
+
+      </div>
+      <div class="mt-2">
+        <label class="me-2 text-primary" ngDefaultControl formControlName="img3">img3</label>
+        <input type="file"
+        (change)="onimgSelected3($event)"
+        
+        ngDefaultControl formControlName="img"
+        class="inputFile"> 
+
+      </div>
+      <div class="mt-2">
+        <label class="me-2 text-primary" ngDefaultControl formControlName="active">Active</label>
+        <button class="circle-answer yes" (click)="activeSelected(true)"[ngClass]="{'circle-answer-border' : activeTrue === true}">Oui</button>
+        <button class="circle-answer no"(click)="activeSelected(false)" [ngClass]="{'circle-answer-border' : activeFalse === true}">Non</button>
+      </div>
+      <div>
+        <button class="button_yellow mt-4" (click)="submit()">Valider</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-3 d-flex justify-content-end">
+    <img class="imgLogo" src="assets/images/logo.png" alt="boy">
+  </div>
+</div>

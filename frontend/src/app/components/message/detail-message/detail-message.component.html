@@ -1,0 +1,18 @@
+<div class="d-flex flex-column p-3 ">
+    <p>Message de la part de <span class="fw-bold">{{name_sender}}</span> </p>
+<p>Sujet : <span class="fw-bold">{{messageSelected[0].title}}</span></p>
+<p>Description : {{messageSelected[0].content}}</p>
+<div class="text-center">
+    <button class="button_yellow" (click)="isAnswerdOk()">Répondre</button>
+</div>
+
+</div>
+<div *ngIf=" formIsVisible" class="box-control-container p-fixed">
+    <app-answer
+        class="box-control"
+        [depends_of]="depends_of"
+        [messageSelected]="messageSelected"
+        [name_sender]="name_sender">
+    </app-answer>
+</div>
+

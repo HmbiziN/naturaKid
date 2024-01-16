@@ -1,0 +1,25 @@
+#map{
+    min-height: 100vh;
+    z-index: 1;
+}
+.div-title{
+    position: absolute;
+    z-index: 3;
+    top: 5em;
+    left: 5em;
+}
+.div-address{
+    position: absolute;
+    z-index: 3;
+    top: 9.5em;
+    left: 2em;
+}
+.form-container{
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 12em;
+    left: 2em;
+    z-index: 2;
+}

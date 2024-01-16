@@ -1,0 +1,16 @@
+/* :host {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+  } */
+/* body{
+  background-image: url("../assets/images/logo.png");
+  background-size: contain ;
+  background-repeat: no-repeat ;
+
+} */
+body{
+  background-color: #f4f4f4;
+  font-family: "Avenir";
+}

@@ -1,0 +1,112 @@
+<div class="d-flex justify-content-end" data-target="#modal">
+  <img class="imgIcone close c-pointer" src="assets/images/times-circle-solid.svg" alt="close" data-toggle="tooltip"
+    data-placement="top" title="Fermer" (click)="cancel.emit()">
+</div>
+<div class="container-fluid" id="hight">
+  <div class="d-flex flex-wrap justify-content-center">
+    <div class="col-8 justify-content-center flex-wrap">
+      <h3 class="text_dark_blue text-center fw-bold mb-4"><img src="assets/images/street-view-yellow.svg" class="imgIcone"
+          alt="point"> {{itinerary[0].title|uppercase}}</h3>
+          <div class="d-flex ms-3 align-items-center flex-wrap">
+            <p class="fw-bold me-2 label"> Météo du jour: </p>
+            <p class="fw-bold me-2">{{descriptionMeteo}} </p>
+            <p class="fw-bold me-2">{{temp}} °C</p>
+           <p><img id=iconUrl src="{{iconUrl}}" alt="{{iconUrl}}"></p> 
+          </div>
+      <div class="d-flex flex-wrap ms-3">
+        <p class="me-2">{{itinerary[0].departure}}</p>
+        <p class="circle-age" *ngIf="itinerary[0].age === 1" data-toggle="tooltip" data-placement="top" title="Age">
+          3/6
+        </p>
+        <p class="circle-age" *ngIf="itinerary[0].age === 2" data-toggle="tooltip" data-placement="top" title="Age">
+          7/10
+        </p>
+        <p class="circle-age" *ngIf="itinerary[0].age === 3" data-toggle="tooltip" data-placement="top" title="Age">
+          +10
+        </p>
+        <label class="me-2 fw-bold">Difficulté: </label>
+        <p class="circle-complexity complexity-1" *ngIf="itinerary[0].complexity === 1" data-toggle="tooltip"
+          data-placement="top" title="Facile"></p>
+        <p class="circle-complexity complexity-2" *ngIf="itinerary[0].complexity === 2" data-toggle="tooltip"
+          data-placement="top" title="Moyenne"></p>
+        <p class="circle-complexity complexity-3" *ngIf="itinerary[0].complexity === 3" data-toggle="tooltip"
+          data-placement="top" title="Difficile"></p>
+        <label class="fw-bold">Distance : </label>
+        <p class="fw-bold me-2" id="distance"></p>
+        <p></p>
+        <label class="fw-bold"> Dénivelé : </label>
+        <p class="fw-bold me-2" id="denivele"> </p>
+      </div>
+
+      <div *ngIf="deleteIsVisible" class=" box-control-container p-fixed">
+        <div class="box-control-message">
+          <img class="imgIcone close c-pointer" src="assets/images/times-circle-solid.svg" alt="close"
+            (click)="closeMessage()">
+          <div class="d-flex flex-column ">
+            <p class="text-center mt-3 border-bottom">C'est noté!</p>
+            <p class="text-center mt-3">Ce parcours est désormais retiré de votre liste de favoris</p>
+            <div class="d-flex justify-content-end">
+              <button class="button_pink" (click)="closeMessage()">Fermer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="addIsVisible" class="box-control-container p-fixed">
+        <div class="box-control-message">
+          <img class="imgIcone close c-pointer" src="assets/images/times-circle-solid.svg" alt="close"
+            (click)="closeMessage()">
+          <div class="d-flex flex-column ">
+            <p class="text-center mt-3">C'est dans la boîte!</p>
+            <p class="text-center mt-3">Vous pouvez retrouver ce parcours dans votre liste de favoris</p>
+            <div class="d-flex justify-content-end">
+              <button class="button_pink" (click)="closeMessage()">Fermer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="ms-3 me-2 mb-2 content">{{itinerary[0].content}}</p>
+      <div class="col-3 br-8" id="map2"></div>
+      <div class="d-flex justify-content-between">
+        <div>
+          <button *ngIf="isConnected" class="button_success ms-3" (click)="downloadGpx(itinerary[0].gpx)"
+        data-toggle="tooltip" data-placement="right" title="Télécharger le gpx">GPX</button>
+      <button *ngIf="isConnected" class="button_success" (click)="generatePdf()" data-toggle="tooltip"
+        data-placement="right" title="Télécharger le pdf">PDF</button>
+      <span *ngIf="isConnected">
+        <button class="button_success" *ngIf="!isFavoris" (click)="addFavoris(itinerary[0].id)">Ajouter aux
+          favoris</button>
+        <button class="button_success" *ngIf="isFavoris" (click)="deleteFavoris(fId)">Retirer des favoris</button>
+      </span>
+      <p *ngIf="isConnected" class="italic">* Découvrez comment utiliser le gpx sur notre blog et ne vous perdez plus jamais!</p>
+
+      <p *ngIf="!isConnected" class="fst-italic ms-3">Pour télécharger le parcours en format GPX et/ou PDF connectez
+        vous!
+      </p>
+      <button *ngIf="!isConnected" class="button_blue ms-3" [routerLink]="['/login']">Connexion</button>
+      <button *ngIf="!isConnected" class="button_blue ms-3" [routerLink]="['/registration']">Inscription</button>
+        </div>
+        <div>
+          <button class="button_pink" [routerLink]="['/contact']">Signaler</button>
+        </div>
+      </div>
+      
+      <!--  -->
+      <div class="d-flex justify-content-center bg-yellow p-3 mt-4" *ngIf="!picNull">
+        <div class="">
+          <h5 class="text-center" *ngIf="!picNull" class="text_dark_blue text-center fw-bold mb-3"><img
+              src="assets/images/street-view-solid.svg" class="imgIcone" alt=""> A proximité de ce parcours : </h5>
+          <p class="text-center" *ngIf="!picNull">Manger un morceau après une bonne marche, boire un sirop avec les enfants, acheter une
+            gourde perdue en route, retrouvez la liste de nos partenaires à proximité de votre parcours</p>
+          <div class="text-center">
+          </div>
+        </div>
+      </div>
+      <app-pic-by-city [city]="itinerary[0].departure"></app-pic-by-city>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button (click)="cancel.emit()" class="button_pink me-2">Fermer</button>
+  <a href="#hight"><button class="button_yellow">Remonter</button></a> 
+  </div>
+  

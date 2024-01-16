@@ -1,0 +1,38 @@
+<div class="contact-container content d-flex flex-wrap">
+  <form action="" class="" [formGroup]="contactForm">
+    <div class="d-flex align-items-center justify-content-between">
+      <h2>Formulaire de contact</h2>
+      <button class="button_yellow" (click)="goBack()">Retour</button>
+    </div>
+    <p>Merci de remplir tous les champs du formulaire</p>
+    <div class="form-line d-flex gap-10 d-flex flex-wrap">
+      <input type="text" name="firstName" id="firstName" class="flex-1" placeholder="Nom" formControlName="firstName" [(ngModel)]="firstName">
+      <input type="mail" name="mail" id="mail" class="flex-1" placeholder="Email" formControlName="mail" [(ngModel)]="mail">
+    </div>
+    <div class="form-line d-flex">
+      <input type="text" name="subject" id="subject" class="flex-1" placeholder="Sujet" formControlName="subject" [(ngModel)]="subject">
+    </div>
+    <div class="frot-textarea">
+      <textarea name="message" id="message" cols="30" rows="10" placeholder="Message"
+        formControlName="message" [(ngModel)]="message"></textarea>
+    </div>
+    <div class="form-button">
+      <button (click)="sentMail()" class="button_blue">Envoyer</button>        
+    </div>
+  </form>
+</div>
+
+<div *ngIf="messageIsVisible" class="alert alert-success" role="alert">
+  <h4 class="alert-heading">C'est parti!</h4>
+  <p>Votre message à été envoyé avec succès</p>
+  <hr>
+  <p class="mb-0">Nous vous répondons le plus rapidement possible</p>
+  <button class="btn btn-outline-secondary" (click)="messageIsVisible = false">Fermer</button>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">C'est parti!</h4>
+  <p>Votre message n'a pas été envoyé 🙄</p>
+  <hr>
+  <p class="mb-0">Veuillez remplir tous les champs pour valider l'envoi</p>
+  <button class="btn btn-outline-secondary" (click)="errorMessage = false">Fermer</button>
+</div>

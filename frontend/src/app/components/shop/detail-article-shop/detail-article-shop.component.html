@@ -1,0 +1,35 @@
+<div class="mt-5 row justify-content-center align-items-center">
+    <div class="col-2">
+    </div>
+        <div class=" col-4">
+            <div class="ms-3">
+                <div class="d-flex justify-content-between">
+                  
+                    <p><span class="badge bg-warning text-dark mt-2 ms-1">{{productSelected[0].category}}</span></p>
+                    <p class="fw-bold">{{productSelected[0].price}}€</p>
+                </div>
+                
+              <h3 class="text-center">{{productSelected[0].title}}</h3>
+              <br>
+              <p>Vendeur : {{user[0].name}}</p>
+              <p>{{productSelected[0].gender}}</p>
+              <p>Taille: {{productSelected[0].cut}}</p>
+              <p>Description : {{productSelected[0].content}}</p>
+              <p>Localisation du vendeur: {{productSelected[0].city}}</p>
+              <p *ngIf="!isConnected" class="italic">Pour contacter le vendeur vous devez vous connecter</p>
+              <button class="button_blue" *ngIf="!isConnected" [routerLink]="['/login']">Connexion</button>
+              <button class="button_blue" *ngIf="!isConnected" [routerLink]="['/registration']">Inscription</button>
+              <button class="button_blue" *ngIf="isConnected" (click)="accesToFormMessage(productSelected[0].user_id)">Contacter le vendeur</button>
+            </div>
+          </div>
+          <div class="col-6">
+            <img src="/api/shop/read_img/{{productSelected[0].img}}" alt="">
+          </div>
+</div>
+<div *ngIf="formMsgIsVisible" class="box-control-container p-fixed">
+  <app-form-message
+  class="box-control"
+[user_recipient]="user_recipient"
+[product]="productSelected"
+></app-form-message>
+</div>

@@ -1,0 +1,193 @@
+<h3 class="text_dark_blue text-center mt-2 fw-bold"><img class="imgIcone" src="assets/images/globe.svg" alt="globe">
+  Le shop</h3>
+<div class="d-flex justify-content-center bg-yellow p-3">
+  <div class="">
+    <h5 class="h5-bandeau">La randonnée éco-responsable!</h5>
+    <p class="text-center">Retrouvez ici tous les articles seconde main de randonnée pour les enfants</p>
+    <p *ngIf="isConnected" class="text-center">Offrez une seconde vie aux vêtements de vos enfants et à votre matériel
+      de rando</p>
+    <p *ngIf="!isConnected" class="text-center">Offrez une seconde vie aux vêtements de vos enfants et à votre matériel
+      de rando, pour cela inscrivez vous!</p>
+    <div class="d-flex justify-content-center">
+      <button *ngIf="!isConnected" [routerLink]="['/registration']" class="button_yellow">Inscription</button>
+      <button *ngIf="!isConnected" [routerLink]="['/login']" class="button_yellow">Connexion</button>
+      <button *ngIf="isConnected" [routerLink]="['/add_product']" class="button_yellow">Ajout d'article</button>
+    </div>
+
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="d-flex flex-wrap justify-content-center mt-2 align-items-center">
+    <div *ngIf="!moreFilter" class="d-flex flex-column justify-content-center">
+      <div>
+        <button (click)="getProductByGender('Garcon')" class="circle-filter yes">Garçon</button>
+        <button (click)="getProductByGender('Fille')" class="circle-filter no">Fille</button>
+        <button (click)="getProductByGender('Unisexe')" class="circle-filter else">Unisexe</button>
+        <button (click)="getProducts()" class="circle-filter blue-circle">Tout</button>
+      </div>
+      <div class="text-center">
+        <button class="button_blue mt-3" (click)="moreFilterIsVisible()">Filtres avancés</button>
+      </div>
+    </div>
+
+    <div *ngIf="moreFilter">
+      <h5 class="txt_yellow">Filtres avancés</h5>
+      <select class="my-select-container me-2" name="department" id="department">
+        <option value="Puy-de-dôme" (click)="updateDepartment('Puy-de-dôme')">Puy-de-dôme</option>
+        <option (click)="updateDepartment('Haute-Loire')" value="Haute-Loire">Haute-Loire</option>
+        <option (click)="updateDepartment('Cantal')" value="Cantal">Cantal</option>
+        <option (click)="updateDepartment('Allier')" value="Allier">Allier</option>
+        <option (click)="updateDepartment('Ain')" value="Ain">Ain</option>
+        <option (click)="updateDepartment('Aisne')" value="Aisne">Aisne</option>
+        <option (click)="updateDepartment('Alpe-de-Haute-Provence')" value="Alpe-de-Haute-Provence">Alpe-de-Haute-Provence</option>
+        <option (click)="updateDepartment('Hautes-alpes')" value="Hautes-alpes">Hautes-alpes</option>
+        <option (click)="updateDepartment('Alpes-maritimes')" value="Alpes-maritimes">Alpes-maritimes</option>
+        <option (click)="updateDepartment('Ardèche')" value="Ardèche">Ardèche</option>
+        <option (click)="updateDepartment('Ardennes')" value="Ardennes">Ardennes</option>
+        <option (click)="updateDepartment('Ariège')" value="Ariège">Ariège</option>
+        <option (click)="updateDepartment('Aube')" value="Aube">Aube</option>
+        <option (click)="updateDepartment('Aude')" value="Aude">Aude</option>
+        <option (click)="updateDepartment('Bouches-du-Rhone')" value="Bouches-du-Rhone">Bouches-du-Rhone</option>
+        <option (click)="updateDepartment('Calvados')" value="Calvados">Calvados</option>
+        <option (click)="updateDepartment('Charente')" value="Charente">Charente</option>
+        <option (click)="updateDepartment('Charente-maritime')" value="Charente-maritime">Charente-maritime</option>
+        <option (click)="updateDepartment('Cher')" value="Cher">Cher</option>
+        <option (click)="updateDepartment('Corse-du-sud')" value="Corse-du-sud">Corse-du-sud</option>
+        <option (click)="updateDepartment('Haute-corse')" value="Haute-corse">Haute-corse</option>
+        <option (click)="updateDepartment('Cote-dor')" value="Cote-dor">Cote-d'or</option>
+        <option (click)="updateDepartment('Cote-darmor')" value="Cote-darmor">Cote-d'Armor</option>
+        <option (click)="updateDepartment('Creuse')" value="Creuse">Creuse</option>
+        <option (click)="updateDepartment('Dordogne')" value="Dordogne">Dordogne</option>
+        <option (click)="updateDepartment('Doubs')" value="Doubs">Doubs</option>
+        <option (click)="updateDepartment('Drome')" value="Drome">Drome</option>
+        <option (click)="updateDepartment('Eure-et-loir')" value="Eure-et-loir">Eure-et-loir</option>
+        <option (click)="updateDepartment('Finistere')" value="Finistere">Finistere</option>
+        <option (click)="updateDepartment('Gard')" value="Gard">Gard</option>
+        <option (click)="updateDepartment('Haute-garonne')" value="Haute-garonne">Haute-garonne</option>
+        <option (click)="updateDepartment('Gers')" value="Gers">Gers</option>
+        <option (click)="updateDepartment('Gironde')" value="Gironde">Gironde</option>
+        <option (click)="updateDepartment('Herault')" value="Herault">Herault</option>
+        <option (click)="updateDepartment('Ille-et-vilaine')" value="Ille-et-vilaine">Ille-et-vilaine</option>
+        <option (click)="updateDepartment('Indre')" value="Indre">Indre</option>
+        <option (click)="updateDepartment('Indre-et-loire')" value="Indre-et-loire">Indre-et-loire</option>
+        <option (click)="updateDepartment('Isere')" value="Isere">Isere</option>
+        <option (click)="updateDepartment('Jura')" value="Jura">Jura</option>
+        <option (click)="updateDepartment('Landes')" value="Landes">Landes</option>
+        <option (click)="updateDepartment('Loir-et-cher')" value="Loir-et-cher">Loir-et-cher</option>
+        <option (click)="updateDepartment('Loire')" value="Loire">Loire</option>
+        <option (click)="updateDepartment('Loire-atlantique')" value="Loire-atlantique">Loire-atlantique</option>
+        <option (click)="updateDepartment('Loiret')" value="Loiret">Loiret</option>
+        <option (click)="updateDepartment('Lot')" value="Lot">Lot</option>
+        <option (click)="updateDepartment('Lot-et-garonne')" value="Lot-et-garonne">Lot-et-garonne</option>
+        <option (click)="updateDepartment('Lozere')" value="Lozere">Lozere</option>
+        <option (click)="updateDepartment('Maine-et-loire')" value="Maine-et-loire">Maine-et-loire</option>
+        <option (click)="updateDepartment('Manche')" value="Manche">Manche</option>
+        <option (click)="updateDepartment('Marne')" value="Marne">Marne</option>
+        <option (click)="updateDepartment('Haute-Marne')" value="Haute-Marne">Haute-Marne</option>
+        <option (click)="updateDepartment('Mayenne')" value="Mayenne">Mayenne</option>
+        <option (click)="updateDepartment('Meurthe-et-moselle')" value="Meurthe-et-moselle">Meurthe-et-moselle</option>
+        <option (click)="updateDepartment('Meuse')" value="Meuse">Meuse</option>
+        <option (click)="updateDepartment('Morbihan')" value="Morbihan">Morbihan</option>
+        <option (click)="updateDepartment('Moselle')" value="Moselle">Moselle</option>
+        <option (click)="updateDepartment('Nievre')" value="Nievre">Nievre</option>
+        <option (click)="updateDepartment('Nord')" value="Nord">Nord</option>
+        <option (click)="updateDepartment('Oise')" value="Oise">Oise</option>
+        <option (click)="updateDepartment('Orne')" value="Orne">Orne</option>
+        <option (click)="updateDepartment('Pas-de-calais')" value="Pas-de-calais">Pas-de-calais</option>
+        <option (click)="updateDepartment('Pyrénées-atlantiques')" value="Pyrénées-atlantiques">Pyrénées-atlantiques</option>
+        <option (click)="updateDepartment('Haute-pyrénées')" value="Haute-pyrénées">Haute-pyrénées</option>
+        <option (click)="updateDepartment('Pyrénées-orientales')" value="Pyrénées-orientales">Pyrénées-orientales</option>
+        <option (click)="updateDepartment('Bas-rhin')" value="Bas-rhin">Bas-rhin</option>
+        <option (click)="updateDepartment('Haut-rhin')" value="Haut-rhin">Haut-rhin</option>
+        <option (click)="updateDepartment('Rhône')" value="Rhône">Rhône</option>
+        <option (click)="updateDepartment('Haute-savoie')" value="Haute-savoie">Haute-savoie</option>
+        <option (click)="updateDepartment('Saone-et-loire')" value="Saone-et-loire">Saone-et-loire</option>
+        <option (click)="updateDepartment('Sarthe')" value="Sarthe">Sarthe</option>
+        <option (click)="updateDepartment('Haute-savoie')" value="Haute-savoie">Haute-savoie</option>
+        <option (click)="updateDepartment('Savoie')" value="Savoie">Savoie</option>
+        <option (click)="updateDepartment('Paris')" value="Paris">Paris</option>
+        <option (click)="updateDepartment('Seine-maritime')" value="Seine-maritime">Seine-maritime</option>
+        <option (click)="updateDepartment('Seine-et-marne')" value="Seine-et-marne">Seine-et-marne</option>
+        <option (click)="updateDepartment('Yvelines')" value="Yvelines">Yvelines</option>
+        <option (click)="updateDepartment('Deux-sevres')" value="Deux-sevres">Deux-sevres</option>
+        <option (click)="updateDepartment('Somme')" value="Somme">Somme</option>
+        <option (click)="updateDepartment('Tarn')" value="Tarn">Tarn</option>
+        <option (click)="updateDepartment('Tarn-et-garonne')" value="Tarn-et-garonne">Tarn-et-garonne</option>
+        <option (click)="updateDepartment('Var')" value="Var">Var</option>
+        <option (click)="updateDepartment('Vaucluse')" value="Vaucluse">Vaucluse</option>
+        <option (click)="updateDepartment('Vendee')" value="Vendee">Vendee</option>
+        <option (click)="updateDepartment('Vienne')" value="Vienne">Vienne</option>
+        <option (click)="updateDepartment('Haute-Vienne')" value="Haute-Vienne">Haute-Vienne</option>
+        <option (click)="updateDepartment('Vosges')" value="Vosges">Vosges</option>
+        <option (click)="updateDepartment('Territoire-de-belfort')" value="Territoire-de-belfort">Territoire-de-belfort</option>
+        <option (click)="updateDepartment('Essonne')" value="Essonne">Essonne</option>
+        <option (click)="updateDepartment('Haut-de-seine')" value="Haut-de-seine">Haut-de-seine</option>
+        <option (click)="updateDepartment('Seine-saint-denis')" value="Seine-saint-denis">Seine-saint-denis</option>
+        <option (click)="updateDepartment('Val-de-marne')" value="Val-de-marne">Val-de-marne</option>
+        <option (click)="updateDepartment('Val-doise')" value="Val-doise">Val-d'oise</option>
+      </select>
+      <select class="my-select-container me-2" name="" id="">
+        <option value="Unisexe" (click)="updateGender('Unisexe')">Unisexe</option>
+        <option value="Fille" (click)="updateGender('Fille')">Fille</option>
+        <option value="Garcon" (click)="updateGender('Garcon')">Garcon</option>
+      </select>
+      <select class="my-select-container me-2" name="" id="">
+        <option value="Chaussures" (click)="updateCategory('Chaussures')">Chaussures</option>
+        <option value="Pantalon" (click)="updateCategory('Pantalon')">Pantalon</option>
+        <option value="Short" (click)="updateCategory('Short')">Short</option>
+        <option value="Tee-shirt" (click)="updateCategory('Tee-shirt')">Tee-shirt</option>
+        <option value="Pull" (click)="updateCategory('Pull')">Pull</option>
+        <option value="Veste" (click)="updateCategory('Veste')">Veste</option>
+        <option value="Matériel" (click)="updateCategory('Matériel')">Matériel</option>
+      </select>
+      <select class="my-select-container me-2" name="" id="">
+        <option value="taille unique" (click)="updateCut('taille unique')">taille unique</option>
+        <option (click)="updateCut('2 ans')" value="2 ans">2 ans</option>
+        <option (click)="updateCut('3 ans')" value="3 ans">3 ans</option>
+        <option (click)="updateCut('4 ans')" value="4 ans">4 ans</option>
+        <option (click)="updateCut('5 ans')" value="5 ans">5 ans</option>
+        <option (click)="updateCut('6 ans')" value="6 ans">6 ans</option>
+        <option (click)="updateCut('7 ans')" value="7 ans">7 ans</option>
+        <option (click)="updateCut('8 ans')" value="8 ans">8 ans</option>
+        <option (click)="updateCut('9 ans')" value="9 ans">9 ans</option>
+        <option (click)="updateCut('10 ans')" value="10 ans">10 ans</option>
+        <option (click)="updateCut('11 ans')" value="11 ans">11 ans</option>
+        <option (click)="updateCut('12 ans')" value="12 ans">12 ans</option>
+        <option (click)="updateCut('13 ans')" value="13 ans">13 ans</option>
+        <option (click)="updateCut('14 ans')" value="14 ans">14 ans</option>
+        <option (click)="updateCut('29')" value="29">29</option>
+        <option (click)="updateCut('30')" value="30">30</option>
+        <option (click)="updateCut('31')" value="31">31</option>
+        <option (click)="updateCut('32')" value="32">32</option>
+        <option (click)="updateCut('33')" value="33">32</option>
+        <option (click)="updateCut('34')" value="34">34</option>
+        <option (click)="updateCut('35')" value="35">35</option>
+        <option (click)="updateCut('36')" value="36">36</option>
+      </select>
+      <button class="button_blue" (click)="updateMultipleFilter()">Rechercher</button><br>
+      <!-- <input class="mt-2" type="search" placeholder="Ville"> -->
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-around mt-5 mb-3">
+    <div class="card d-flex" style="width: 18rem;"
+      *ngFor="let p of products | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <p class="text-start"><span class="badge bg-warning text-dark mt-2 ms-1">{{p.category}}</span></p>
+      <img src="/api/shop/read_img/{{p.img}}" class="card-img-top imgCard pa" alt="...">
+      <div class="card-body d-flex justify-content-between">
+        <h6 class="card-title text_dark_blue fw-bold">"{{p.title}}"</h6>
+        <p>{{p.price}}€</p>
+      </div>
+      <p class="smallPolice ms-2">{{p.gender}}</p>
+      <p class="smallPolice ms-2">{{p.cut}}</p>
+      <span class="text-center"><button class="button_blue mb-2" (click)="getProductSelected(p.id)">Voir
+          l'article</button></span>
+    </div>
+
+  </div>
+  <pagination-controls (pageChange)="cp = $event" class="text-center"></pagination-controls>
+</div>
+
+<app-detail-article-shop *ngIf="productSelectedIsVisible" [productSelected]="productSelected">
+
+</app-detail-article-shop>

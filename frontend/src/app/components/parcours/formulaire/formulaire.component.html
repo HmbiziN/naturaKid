@@ -1,0 +1,95 @@
+<div id="map"></div>
+<div class="div-title">
+  <h3 class="text_dark_blue fw-bold"><img src="assets/images/pinForm.svg" class="imgIcone" alt=""> Créer une aventure
+  </h3>
+</div>
+<div class="div-address">
+  <input type="text" [(ngModel)]="address" placeholder="Ville de départ">
+  <button class="button_yellow ms-2" (click)="geocode(address, map)">Appliquer</button>
+</div>
+<form [formGroup]="newItinerary">
+  <div class="form-container">
+
+    <div>
+      <p formControlName="departure">Ville de départ : {{address}}</p>
+      <input type="text" placeholder="Titre" class="mt-2" formControlName="title" [(ngModel)]="title" required>
+
+
+      <div class="mt-4 mb-3">
+        <textarea class="b_radius" cols="50" rows="2" placeholder="Décrivez précisement le parcours et l'histoire"
+          formControlName="content" [(ngModel)]="content" required></textarea>
+      </div>
+      <div *ngIf="isAdmin">
+        Parcours labéllisé :
+        <button class="circle-answer yes" (click)="labelSelected(true)"
+          [ngClass]="{'circle-answer-border' : labelTrue === true}">Oui</button>
+        <button class="circle-answer no" (click)="labelSelected(false)"
+          [ngClass]="{'circle-answer-border' : labelFalse === true}">Non</button>
+      </div>
+
+      <div class="mt-2">
+        <label class="me-2">Age de l'enfant</label>
+        <button class="circle-age" (click)="valueAgeSelected(1)" [ngClass]="{'circle-filter' : ageOne === false}"
+          ngDefaultControl formControlName="complexity">3/6</button>
+        <button class="circle-age" (click)="valueAgeSelected(2)" [ngClass]="{'circle-filter' : ageTwo === false}"
+          ngDefaultControl formControlName="complexity">7/10</button>
+        <button class="circle-age" (click)="valueAgeSelected(3)" [ngClass]="{'circle-filter' : ageThree === false}"
+          ngDefaultControl formControlName="complexity">+10</button>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <label class="me-2">Difficulté du parcours</label>
+      <button class="circle-complexity complexity-1" (click)="valueComplexitySelected(1)"
+        [ngClass]="{'circle-filter' : complexityOne === false}" ngDefaultControl formControlName="age"></button>
+
+      <button class="circle-complexity complexity-2" (click)="valueComplexitySelected(2)"
+        [ngClass]="{'circle-filter' : complexityTwo === false}" ngDefaultControl formControlName="age"></button>
+
+      <button class="circle-complexity complexity-3" (click)="valueComplexitySelected(3)"
+        [ngClass]="{'circle-filter' : complexityThree === false}" ngDefaultControl formControlName="age"></button>
+
+    </div>
+    <div class="mt-2">
+      <label for="" class="me-2">Distance en km</label>
+      <input type="number" formControlName="distance" [(ngModel)]="distance" required>
+    </div>
+
+    <div class="mt-2">
+      <div class="div-input-start">
+        <label class="label-start">GPX</label>
+        <input accept=".gpx" type="file" (change)="ongpxSelected($event)" class="me-2 file-input inputFile"
+          ngDefaultControl formControlName="gpx" required>
+      </div>
+
+      <div class="div-input-start">
+        <label class="label-start">IMG</label>
+        <input accept=".jpeg, .jpg, .png, .svg" type="file" (change)="onimgSelected($event)"
+          class="me-2 file-input inputFile" ngDefaultControl formControlName="img" required>
+      </div>
+
+    </div>
+    <div class="hidden">
+      <input type="text" formControlName="lat" [(ngModel)]="lat" value="{{lat}}" placeholder="lat">
+      <input type="text" formControlName="lng" [(ngModel)]="lng" value="{{lng}}" placeholder="lng">
+    </div>
+    <p class="mt-3">* Attention le parcours doit respecter certains critères <button class="button_yellow"
+        (click)="conditionIsVisible = true">Voir</button></p>
+    <button class="mt-4 button_yellow" (click)="submit()">Valider</button>
+  </div>
+
+</form>
+<div *ngIf="conditionIsVisible" class="box-control-container p-fixed">
+  <div class="d-flex flex-column box-control-message">
+    <img class="imgIcone close c-pointer" src="assets/images/times-circle-solid.svg" alt="close"
+      (click)="conditionIsVisible = false">
+    <ul>
+      <li>Pensez à valider la ville en appuyant sur le bouton "Appliquer"</li>
+      <li>Soyez le plus précis possible dans votre description</li>
+      <li>Ne sous estimez pas la difficulté d'un parcours!</li>
+      <li>N'oubliez pas votre fichier GPX</li>
+      <li>Les images ne doivent pas faire apparaître les visages des enfants</li>
+    </ul>
+    <p>Si ces critères ne sont pas respectés nous seront contraint de supprimer votre parcours</p>
+  </div>
+</div>

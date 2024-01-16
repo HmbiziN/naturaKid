@@ -1,0 +1,29 @@
+.img1{
+    width: 286px;
+    height: 162px;
+}
+h5{
+  font-size: 52px;
+  font-weight: bold;
+}
+.appDetail{
+    border-radius: 20px;
+    background-color: rgb(255,255,255);
+    display: block;
+    padding: 10px;
+    overflow: auto;
+    height: 100%;
+}
+img{
+  max-height: 650px;
+}
+.carousel-inner{
+  height: 540px;
+  width: 100%;
+}
+.cta{
+  top: 18em;
+}
+a{
+  color: black;
+}

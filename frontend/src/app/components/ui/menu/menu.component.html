@@ -1,0 +1,131 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text_dark_blue" [routerLink]="['/accueil']"><img src="assets/images/logo.png" class="logo"
+        alt="">Natura kid</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown" *ngIf="!isConnected">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Parcours
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" *ngIf="!isConnected">
+            <li><a class="dropdown-item" [routerLink]="['/list_road']">Voir les parcours</a></li>
+            <!-- <li><a class="dropdown-item" [routerLink]="['/add_road']">Ajouter un parcours</a></li> -->
+          </ul>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isConnected">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Parcours
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/list_road']">Voir les parcours</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/add_road']">Ajouter un parcours</a></li>
+          </ul>
+        </li>
+        <!-- <li class="nav-item" *ngIf="!isAdmin">
+          <a [routerLink]="['/list_road']">Parcours</a>
+        </li> -->
+        <li class="nav-item dropdown" *ngIf="isAdmin">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Points d'intérêts complémentaires
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/list_pic']">Voir les pics</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/add_pic']">Ajouter un pic</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown"  *ngIf="isConnected">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Natura Shop
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/shop']">Voir les annonces</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/add_product']">Ajouter une annonce</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown"  *ngIf="!isConnected">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Natura Shop
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/shop']">Voir les annonces</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" *ngIf="!isAdmin">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Blog
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/list_article']">Voir les articles</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isAdmin">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Blog
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/list_article']">Voir les articles</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/add_article']">Ajouter un article</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isAdmin">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Admin  <span class="badge bg-secondary" *ngIf="message" data-toggle="tooltip" data-placement="right"
+            title="Messages">{{nbrPendingAt}}</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/to_confirm']">Annonces à valider</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/list_admin']">Articles du blog</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div>
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="isConnected">
+          <a class="nav-link" [routerLink]="['/my_account']" data-toggle="tooltip" data-placement="right"
+          title="Mon compte"><img src="assets/images/user-solid.svg" class="nav-icone"
+            alt="user-solid">
+            <span class="badge bg-secondary" *ngIf="message" data-toggle="tooltip" data-placement="right"
+            title="Messages" (click)="goToAccount()">{{nbr}}</span>
+          </a>
+          <!-- <p>{{nbr}}</p> -->
+        </li>
+        <!-- <li class="nav-item" *ngIf="isConnected">
+          <a class="nav-link" [routerLink]="['/my_account']" data-toggle="tooltip" data-placement="right"
+          title="Mon compte"><img src="assets/images/user-solid.svg" class="nav-icone"
+            alt="user-solid"><span class="badge bg-secondary">nbr</span></a>
+        </li> -->
+        <li class="nav-item" *ngIf="!isConnected">
+          <a class="nav-link" [routerLink]="['/registration']" data-toggle="tooltip" data-placement="right"
+          title="Inscription"><img src="assets/images/plus-circle-solid.svg" class="nav-icone"
+            alt="user-plus-solid"></a>
+        </li>
+        <li class="nav-item" *ngIf="!isConnected">
+          <a class="nav-link" [routerLink]="['/login']"data-toggle="tooltip" data-placement="right"
+          title="Connexion"><img src="assets/images/user-check-solid.svg" class="nav-icone"
+            alt="user-check-solid"></a>
+        </li>
+        <li class="nav-item" *ngIf="isConnected">
+          <a class="nav-link" [routerLink]="['/logout']" data-toggle="tooltip" data-placement="right"
+          title="Deconnexion"><img src="assets/images/out.svg" class="nav-icone"
+            alt="sign-out"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

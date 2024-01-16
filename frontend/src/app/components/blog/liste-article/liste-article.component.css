@@ -1,0 +1,115 @@
+.footer{
+    text-align: end;
+    background-color: transparent;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+}
+
+#imgBack{
+    margin-top: 3em;
+    margin-left: 3em;
+    max-height: 650px;
+}
+.imgCard{
+    width: 286px;
+    height: 190px;
+}   
+
+.imgArticle{
+    width: 250px;
+    height: 200px;
+}
+.message{
+    /* border: black; */
+    box-shadow: 10px 5px 5px grey;
+    background-color: whitesmoke;
+    color: black;
+    width: 700px;
+    height: 200px;
+    position: absolute;
+    top: 20em;
+    left: 50em;
+}
+#divButtonMessage{
+    position: absolute;
+    top: 10em;
+    left: 30em;
+}
+@media(max-width:770px){
+    #carouselExampleCaptions{
+        display: none;
+    }
+}
+@media(min-width:769px){
+    #homePicture{
+        display: none;
+    }
+    }
+@media(min-width:769px){
+    .ctaPicture{
+        display: none;
+    }
+    }
+#homePicture{
+    position: relative;
+}    
+.ctaPicture{
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+.carousel-inner{
+    height: 540px;
+    width: 100%;
+}
+.cta{
+    top: 18em;
+}
+h5{
+    font-size: 52px;
+    font-weight: bold;
+}
+.imgFilter{
+    max-width: 194;
+    height: 162px;
+    border-radius: 16px;
+    margin-right: 1em;
+    /* position: relative; */
+}
+.imgFilter:hover{
+    border: darkorange 4px solid;
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
+    transform: scale(1.1);
+    }
+.pFilter{
+    border-radius: 8px;
+    display: block;
+    background-color: white;
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    color: #2A5982;
+    font-weight: bold;
+    font-size: 32px;
+}
+.pa{
+    position: relative;
+}
+.my-select-container {
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: visible;
+    position: relative;
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: inset 1px 0px 4px rgba(0, 0, 0, 0.25);
+    background-color: white;
+  }
+  .pf{
+      position: absolute;
+      top: 5%;
+      left: 80%;
+  }

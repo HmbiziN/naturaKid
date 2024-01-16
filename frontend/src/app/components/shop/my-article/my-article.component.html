@@ -1,0 +1,53 @@
+<div class="mt-5 row justify-content-center align-items-center">
+    <div class="col-2">
+    </div>
+        <div class=" col-4">
+            <div class="ms-3">
+                <div class="d-flex justify-content-between">
+                  
+                    <p><span class="badge bg-warning text-dark mt-2 ms-1">{{productSelected[0].category}}</span></p>
+                    <p class="fw-bold">{{productSelected[0].price}}€</p>
+                </div>
+                
+              <h3 class="text-center">{{productSelected[0].title}}</h3>
+              <br>
+              <p>Vendeur : {{user[0].name}}</p>
+              <p>{{productSelected[0].gender}}</p>
+              <p>Taille: {{productSelected[0].cut}}</p>
+              <p>Description : {{productSelected[0].content}}</p>
+              <p>Localisation du vendeur: {{productSelected[0].city}}</p>
+              <p *ngIf="!isConnected" class="italic">Pour contacter le vendeur vous devez vous connecter</p>
+              <button class="button_blue" *ngIf="!isConnected" [routerLink]="['/login']">Connexion</button>
+              <button class="button_blue" *ngIf="!isConnected" [routerLink]="['/registration']">Inscription</button>
+              <button class="button_blue" *ngIf="isConnected" (click)="messageForDelete(productSelected[0].id)">Supprimer</button>
+              <button class="button_blue" *ngIf="isConnected" (click)="updateProducts(productSelected[0].id)">Modifier</button>
+            </div>
+          </div>
+          <div class="col-6">
+            <img src="/api/shop/read_img/{{productSelected[0].img}}" alt="">
+          </div>
+</div>
+<div *ngIf="formMsgIsVisible" class="box-control-container p-fixed">
+  <app-form-message
+  class="box-control"
+[user_recipient]="user_recipient"
+[product]="productSelected"
+></app-form-message>
+</div>
+<div *ngIf="deleteSelected" class="box-control-container p-fixed">
+
+    <div class="d-flex flex-column box-control-message">
+      <img class="imgIcone close c-pointer" src="assets/images/times-circle-solid.svg" alt="close"
+      (click)="btnNo()">
+      <p class="text-center mt-3">Attention vous êtes sur le point de supprimer cette annonce</p>
+      <p class="text-center mt-3">Souhaitez vous confirmer ce choix</p>
+
+      <div class="d-flex justify-content-center">
+        <button class="button_yellow me-2" (click)="btnYes()">Oui</button>
+        <button class="button_yellow" (click)="btnNo()">Non</button>
+      </div>
+    </div>
+  </div>
+  <app-update *ngIf="updateIsVisible" [productSelected]="productSelected">
+
+  </app-update>

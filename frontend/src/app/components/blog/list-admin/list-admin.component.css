@@ -1,0 +1,11 @@
+.box-control-message {
+    border-radius: 20px;
+    background-color: rgb(255,255,255);
+    display: block;
+    padding: 10px;
+    overflow: auto;
+    height: 208px;
+   max-width: 498px;
+   position: relative;
+   left: 35%;
+  }

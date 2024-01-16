@@ -1,0 +1,18 @@
+.button_yellow{
+    background-color: #F6972D;
+    ;
+    color: white;
+    border-radius: 0.5em;
+}
+.button_pink:hover{
+    background-color: #7da7a4;
+}
+.button_yellow:hover{
+    background-color: #7da7a4;
+}
+.small-txt{
+    font-size: x-small;
+}
+.detailMessage{
+    width: 50%;
+}

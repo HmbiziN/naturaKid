@@ -1,0 +1,41 @@
+#map{
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 600px;
+    width: 600px;
+}
+.buttonBack{
+    text-align: end;
+}
+
+.div-button{
+    text-align: end;
+}
+h3{
+    text-align: center;
+}
+label{
+    color: #2A5982;
+}
+.imgCard{
+    width: 90px;
+    height: 90px;
+}
+.card{
+    border: none;
+}
+.message{
+    box-shadow: 10px 5px 5px grey;
+    background-color: whitesmoke;
+    color: black;
+    width: 700px;
+    height: 200px;
+    position: absolute;
+    top: 20em;
+    left: 50em;
+}
+.close{
+    margin-left: 650px;
+    margin-top: 15px;
+    cursor: pointer;
+}

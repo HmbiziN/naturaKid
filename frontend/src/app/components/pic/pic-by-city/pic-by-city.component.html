@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 d-flex flex-wrap justify-content-center" *ngFor="let p of pics | paginate: { itemsPerPage: 3, currentPage: cp }">
+      <div class="card mb-3 shadow-lg p-3 mb-5 bg-body rounded ">
+        <p class="card-title text-muted fst-italic">{{p.category}}</p>
+        <h5 class=" text_dark_blue ">{{p.name}}</h5>
+        <p>{{p.street}}
+          <br>{{p.cp}} {{p.city}}</p>
+        <div class="row g-0 align-items-center justify-content-center mb-2">
+          <img *ngIf="p.category === 'bar'" src="assets/images/beer-solid.svg" class=" img-fluid rounded-start ms-1  "
+            alt="icone biere">
+          <img *ngIf="p.category === 'bibliothèque'" src="assets/images/book-solid.svg"
+            class=" img-fluid rounded-start ms-1 " alt="icone livre">
+          <img *ngIf="p.category === 'magasin'" src="assets/images/shopping-bag-solid.svg"
+            class=" img-fluid rounded-start ms-1 " alt="icone magasin">
+          <img *ngIf="p.category === 'restaurant'" src="assets/images/utensils-solid.svg"
+            class=" img-fluid rounded-start ms-1 " alt="icone couverts">
+          <img *ngIf="p.category === 'hotel'" src="assets/images/hotel-solid.svg" class=" img-fluid rounded-start ms-1 "
+            alt="icone hotel">
+          <img *ngIf="p.category === 'château'" src="assets/images/fort-awesome-brands.svg"
+            class=" img-fluid rounded-start ms-1 " alt="icone chateau">
+          <img *ngIf="p.category === 'musée'" src="assets/images/paint-brush-solid.svg"
+            class=" img-fluid rounded-start ms-1 " alt="icone musée">
+          <img *ngIf="p.category === 'parc d\'attraction'" src="assets/images/fan-solid.svg"
+            class=" img-fluid rounded-start ms-1 " alt="icone attraction">
+          <img *ngIf="p.category === 'parc animalier'" src="assets/images/cat-solid.svg"
+            class=" img-fluid rounded-start ms-1 " alt="icone animal">
+        </div>
+        <div class="card-footer text-center">
+          <button (click)="gotToWbsite(p.url)" class="button_yellow">Consulter</button>
+      </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="cp = $event" class="text-center"></pagination-controls>
+  </div>
+</div>

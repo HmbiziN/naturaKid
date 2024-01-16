@@ -1,0 +1,205 @@
+<h3 class="text_dark_blue text-center mt-2 fw-bold"><img class="imgIcone" src="assets/images/globe.svg" alt="globe">
+  Le shop</h3>
+<div class="d-flex justify-content-center bg-yellow p-3">
+  <div class="text-center">
+    <h5 class="h5-bandeau">Créer mon annonce</h5>
+    <p class="text-center">Offrez une seconde vie aux vêtements de vos enfants et à votre matériel de rando</p>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap justify-content-around mt-3">
+  <div class="col-3">
+    <h2 class="mb-3 text_dark_blue fw-bold">Quelques règles</h2>
+    <ul class="italic p-3 fs">
+      <li class="p-2">Les articles doivent être spécifiques aux sports "nature"</li>
+      <li class="p-2">Les articles doivent être dédiés UNIQUEMENT aux enfants</li>
+      <li class="p-2">Les photos ne doivent pas faire apparaître les visages</li>
+      <li class="p-2">La description doit être la plus complète possible</li>
+      <li class="p-2">Tous les champs du formulaire doivent être remplis</li>
+      <li class="p-2">Natura Kid ne divulgue pas vos informations personnelles seul votre pseud oapparaîtra</li>
+      <li class="p-2">Votre article sera ajouté après vérification de l'équipe</li>
+    </ul>
+  </div>
+  <div class="col-8">
+    <form [formGroup]="productForm">
+      <h2 class="mb-3 text_dark_blue fw-bold">Ajouter un article</h2>
+      <p class="italic">Merci de remplir tous les champs du formulaire</p>
+      <div class="d-flex flex-wrap align-items-center">
+        <div class="col-6">
+          <!-- <label for="title">Titre de votre annonce :</label> -->
+          <input formControlName="title" [(ngModel)]="title" type="text" name="title" id="title" class="flex-1"
+            placeholder="Titre">
+          <label for="price">Prix :</label>
+          <input formControlName="price" [(ngModel)]="price" type="number" name="price" id="price" class="flex-1"
+            placeholder="price">
+        </div>
+        <div class="col-6">
+          <label for="gender">Genre : </label>
+          <select class="my-select-container" name="genre" id="genre" formControlName="gender" [(ngModel)]="gender"
+            title="genre">
+            <option value="Unisexe">Unisexe</option>
+            <option value="Fille">Fille</option>
+            <option value="Garcon">Garçon</option>
+          </select>
+          <label for="category">Catégorie : </label>
+          <select class="my-select-container" name="category" id="category" formControlName="category"
+            [(ngModel)]="category">
+            <option value="Chaussures">Chaussures</option>
+            <option value="Pantalon">Pantalon</option>
+            <option value="Short">Short</option>
+            <option value="Tee-shirt">Tee-shirt</option>
+            <option value="Pull">Pull</option>
+            <option value="Veste">Veste</option>
+            <option value="Matériel">Matériel</option>
+          </select>
+          <label for="cut">Taille : </label>
+          <select class="my-select-container" name="cut" id="cut" formControlName="cut" [(ngModel)]="cut">
+            <option value="taille unique">taille unique</option>
+            <option value="2 ans">2 ans</option>
+            <option value="3 ans">3 ans</option>
+            <option value="4 ans">4 ans</option>
+            <option value="5 ans">5 ans</option>
+            <option value="6 ans">6 ans</option>
+            <option value="7 ans">7 ans</option>
+            <option value="8 ans">8 ans</option>
+            <option value="9 ans">9 ans</option>
+            <option value="10 ans">10 ans</option>
+            <option value="11 ans">11 ans</option>
+            <option value="12 ans">12 ans</option>
+            <option value="13 ans">13 ans</option>
+            <option value="14 ans">14 ans</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+            <option value="32">32</option>
+            <option value="33">33</option>
+            <option value="34">34</option>
+            <option value="35">35</option>
+            <option value="36">36</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex flex-wrap align-items-center">
+        <div class="col-6">
+          <label for="department">Département : </label>
+          <select class="my-select-container" name="department" id="department" formControlName="department"
+            [(ngModel)]="department">
+            <option value="Puy-de-dôme">Puy-de-dôme</option>
+            <option value="Haute-Loire">Haute-Loire</option>
+            <option value="Cantal">Cantal</option>
+            <option value="Allier">Allier</option>
+            <option value="Ain">Ain</option>
+            <option value="Aisne">Aisne</option>
+            <option value="Hautes-alpes">Alpe-de-Haute-Provence</option>
+            <option value="Hautes-alpes">Hautes-alpes</option>
+            <option value="Alpes-maritimes">Alpes-maritimes</option>
+            <option value="Ardèche">Ardèche</option>
+            <option value="Ardennes">Ardennes</option>
+            <option value="Ariège">Ariège</option>
+            <option value="Aube">Aube</option>
+            <option value="Aude">Aude</option>
+            <option value="Bouches-du-Rhone">Bouches-du-Rhone</option>
+            <option value="Calvados">Calvados</option>
+            <option value="Charente">Charente</option>
+            <option value="Charente-maritime">Charente-maritime</option>
+            <option value="Cher">Cher</option>
+            <option value="Corse-du-sud">Corse-du-sud</option>
+            <option value="Haute-corse">Haute-corse</option>
+            <option value="Cote-dor">Cote-d'or</option>
+            <option value="Cote-darmor">Cote-d'Armor</option>
+            <option value="Creuse">Creuse</option>
+            <option value="Dordogne">Dordogne</option>
+            <option value="Doubs">Doubs</option>
+            <option value="Drome">Drome</option>
+            <option value="Eure-et-loir">Eure-et-loir</option>
+            <option value="Finistere">Finistere</option>
+            <option value="Gard">Gard</option>
+            <option value="Haute-garonne">Haute-garonne</option>
+            <option value="Gers">Gers</option>
+            <option value="Gironde">Gironde</option>
+            <option value="Herault">Herault</option>
+            <option value="Ille-et-vilaine">Ille-et-vilaine</option>
+            <option value="Indre">Indre</option>
+            <option value="Indre-et-loire">Indre-et-loire</option>
+            <option value="Isere">Isere</option>
+            <option value="Jura">Jura</option>
+            <option value="Landes">Landes</option>
+            <option value="Loir-et-cher">Loir-et-cher</option>
+            <option value="Loire">Loire</option>
+            <option value="Loire-atlantique">Loire-atlantique</option>
+            <option value="Loiret">Loiret</option>
+            <option value="Lot">Lot</option>
+            <option value="Lot-et-garonne">Lot-et-garonne</option>
+            <option value="Lozere">Lozere</option>
+            <option value="Maine-et-loire">Maine-et-loire</option>
+            <option value="Manche">Manche</option>
+            <option value="Marne">Marne</option>
+            <option value="Haute-Marne">Haute-Marne</option>
+            <option value="Mayenne">Mayenne</option>
+            <option value="Meurthe-et-moselle">Meurthe-et-moselle</option>
+            <option value="Meuse">Meuse</option>
+            <option value="Morbihan">Morbihan</option>
+            <option value="Moselle">Moselle</option>
+            <option value="Nievre">Nievre</option>
+            <option value="Nord">Nord</option>
+            <option value="Oise">Oise</option>
+            <option value="Orne">Orne</option>
+            <option value="Pas-de-calais">Pas-de-calais</option>
+            <option value="Pyrénées-atlantiques">Pyrénées-atlantiques</option>
+            <option value="Haute-pyrénées">Haute-pyrénées</option>
+            <option value="Pyrénées-orientales">Pyrénées-orientales</option>
+            <option value="Bas-rhin">Bas-rhin</option>
+            <option value="Haut-rhin">Haut-rhin</option>
+            <option value="Rhône">Rhône</option>
+            <option value="Haute-savoie">Haute-savoie</option>
+            <option value="Saone-et-loire">Saone-et-loire</option>
+            <option value="Sarthe">Sarthe</option>
+            <option value="Haute-savoie">Haute-savoie</option>
+            <option value="Savoie">Savoie</option>
+            <option value="Paris">Paris</option>
+            <option value="Seine-maritime">Seine-maritime</option>
+            <option value="Seine-et-marne">Seine-et-marne</option>
+            <option value="Yvelines">Yvelines</option>
+            <option value="Deux-sevres">Deux-sevres</option>
+            <option value="Somme">Somme</option>
+            <option value="Tarn">Tarn</option>
+            <option value="Tarn-et-garonne">Tarn-et-garonne</option>
+            <option value="Var">Var</option>
+            <option value="Vaucluse">Vaucluse</option>
+            <option value="Vendee">Vendee</option>
+            <option value="Vienne">Vienne</option>
+            <option value="Haute-Vienne">Haute-Vienne</option>
+            <option value="Vosges">Vosges</option>
+            <option value="Territoire-de-belfort">Territoire-de-belfort</option>
+            <option value="Essonne">Essonne</option>
+            <option value="Haut-de-seine">Haut-de-seine</option>
+            <option value="Seine-saint-denis">Seine-saint-denis</option>
+            <option value="Val-de-marne">Val-de-marne</option>
+            <option value="Val-doise">Val-d'oise</option>
+          </select>
+          <label for="city">Ville : </label>
+          <input type="text" placeholder="Ville" formControlName="city" [(ngModel)]="city">
+        </div>
+        <div class="col-6">
+          <label class="">Selectionnez une image </label>
+          <input type="file" (change)="onimgSelected($event)" ngDefaultControl formControlName="img" class="inputFile"
+            accept=".jpg, .jpeg, .png, .svg">
+        </div>
+      </div>
+      <div class="frot-textarea">
+        <textarea name="content" id="content" cols="30" rows="10"
+          placeholder="Description, soyez le plus précis possible!" formControlName="content"
+          [(ngModel)]="content"></textarea>
+      </div>
+      <div class="form-button">
+        <button class="button_blue" (click)="submit()">Ajouter</button>
+      </div>
+    </form>
+  </div>
+  <div class="box-control-container p-fixed d-flex" *ngIf="messageIsVisible">
+    <app-message-shop class="box-control-short"></app-message-shop>
+  </div>
+</div>

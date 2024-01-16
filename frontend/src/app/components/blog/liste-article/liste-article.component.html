@@ -1,0 +1,107 @@
+<h3 class="text_dark_blue fw-bold text-center"><img src="assets/images/blog-solid.svg" class="imgIcone" alt=""> Le blog
+</h3>
+<div class="d-flex justify-content-center bg-yellow p-3">
+  <div class="">
+    <h5>Profitez de votre randonnée</h5>
+    <p>Retrouvez toute nos fiches conseils afin de profitez sereinement de votre moment de partage</p>
+  </div>
+</div>
+<div class="d-flex flex-wrap justify-content-around mt-3 align-items-center">
+  <div>
+    <h5>Chaque problème sa solution!</h5>
+    <p>Le choix du parcours, l'orientation, le matériel, on vous dit tout!</p>
+  </div>
+  <div>
+    <div class="d-flex justify-content-around flex-wrap">
+      <div (click)="getArticleDetail(3)">
+        <img src="assets/images/signpost.jpg" class="imgFilter" alt="">
+        <p class="text-center"><span class="badge bg-warning text-dark">Bien commencer</span></p>
+      </div>
+      <div (click)="getArticleDetail(12)">
+        <img src="assets/images/backpacj.jpg" class="imgFilter" alt="">
+        <p class="text-center"><span class="badge bg-warning text-dark">Le matériel</span></p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-around flex-wrap">
+      <div (click)="getArticleDetail(19)">
+        <img src="assets/images/ori.jpg" class="imgFilter" alt="">
+        <p class="text-center"><span class="badge bg-warning text-dark">Utilisation du gpx</span></p>
+      </div>
+      <div (click)="getArticleDetail(18)">
+        <img src="assets/images/balisage.jpg" class="imgFilter" alt="">
+        <p class="text-center"><span class="badge bg-warning text-dark">Les labels</span></p>
+      </div>
+    </div>
+
+  </div>
+  <div class="container-fluid">
+    <div class="d-flex align-items-center ms-5">
+      <h3 class="me-3">Filtrer les articles</h3>
+      <select name="updateFilter" id="" class="my-select-container me-2" data-toggle="tooltip" data-placement="right"
+        title="Catégorie">
+        <option value="" (click)="filterArticle('conseil')">Conseils</option>
+        <option value="" (click)="filterArticle('materiel')">matériel</option>
+        <option value="" (click)="filterArticle('activite')">activité</option>
+        <option value="" (click)="filterArticle('carte')">Carte</option>
+        <option value="" (click)="filterArticle('autre')">autre</option>
+        <option value="" (click)="showArticleService()">Voir tout</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-aroud mt-3" *ngFor="let a of articles">
+  <div class="card" style="width: 18rem;">
+    <img src="/api/blog/read_img/{{a.img}}" class="card-img-top imgCard pa" alt="...">
+    <p class="text-center"><span class="badge bg-warning text-dark pf">{{a.categorie}}</span></p>
+    <div class="card-body">
+      <h6 class="card-title text_dark_blue fw-bold">{{a.title}}</h6>
+    </div>
+    <div class="card-body d-flex justify-content-end">
+      <a (click)="getArticleDetail(a.id)"><img src="assets/images/eye-solid.svg"
+        class="imgIcone c-pointer me-2" alt="" data-toggle="tooltip" data-placement="top"
+        title="Voir l'article"></a>
+      <a *ngIf="a.active && isAdmin" (click)="editRestoreArticle(a.id)"><img
+        src="assets/images/trash-restore-solid.svg" class="imgIcone" alt="" data-toggle="tooltip"
+        data-placement="top" title="Restaurer l'article"></a>
+        <a *ngIf="!a.active && isAdmin" (click)="editArticle(a.id)"><img
+          src="assets/images/archive-solid.svg" class="imgIcone c-pointer ms-2" alt=""
+          data-toggle="tooltip" data-placement="top" title="Archiver l'article"></a>
+      <a *ngIf="isAdmin" (click)="messageDeleteArticle(a.id)"><img src="assets/images/trash-alt-solid.svg"
+        class="imgIcone c-pointer ms-2" alt="" data-toggle="tooltip" data-placement="top"
+        title="Supprimer l'article"></a>
+    </div>
+  </div>
+  </div>
+
+  <div *ngIf="idArticleSelected" class="box-control-container p-fixed">
+
+    <div class="d-flex flex-column box-control-message">
+      <img class="imgIcone close c-pointer" src="assets/images/times-circle-solid.svg" alt="close"
+      (click)="btnNo()">
+      <p class="text-center mt-3">Attention vous êtes sur le point de supprimer un article</p>
+      <p class="text-center mt-3">Souhaitez vous confirmer ce choix</p>
+
+      <div class="d-flex justify-content-center">
+        <button class="button_yellow me-2" (click)="deleteArticle(idArticleSelected)">Oui</button>
+        <button class="button_yellow" (click)="btnNo()">Non</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showMessageEdit" class="box-control-container p-fixed">
+    <div class="d-flex flex-column box-control-message">
+
+      <p class="text-center mt-3">Attention vous êtes sur le point d'archiver un article</p>
+      <p class="text-center mt-3">Souhaitez vous confirmer ce choix</p>
+
+      <div class="d-flex justify-content-center">
+        <button class="button_yellow me-2" (click)="editArticle(idArticleSelected)">Oui</button>
+        <button class="button_yellow" (click)="btnNo()">Non</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="blogSelectorShown" class=" box-control-container p-fixed">
+    <app-detail-article class="box-control" [articleSelected]="article" (validate)="closeBlogSelect(true)" (cancel)="closeBlogSelect(false)">
+
+    </app-detail-article>
+
+  </div>

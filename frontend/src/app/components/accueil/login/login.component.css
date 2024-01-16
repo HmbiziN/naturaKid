@@ -1,0 +1,35 @@
+h5{
+    font-size: 52px;
+    font-weight: bold;
+}
+.pr{
+    position: relative;
+}
+.pa{
+    position: absolute;
+    left: 40%;
+    top: 40%;
+}
+#homePicture{ 
+    width: 100%;
+ }
+ input{
+    width: 290px;
+}
+.border-error{
+    border: red solid 1px
+}
+.div-form{
+    display: block;
+}
+@media(max-width:769px){
+    #homePicture{
+        display: none;
+    }
+    }
+@media(max-width:769px){
+    .pa{
+        position: relative;
+    top: 50%;
+left: 0;        }
+        }

@@ -1,0 +1,37 @@
+<div class="d-flex flex-wrap justify-content-center">
+    <div>
+        <h2 class="text-center mt-3 fw-bold text_dark_blue">La tour de l'horloge</h2>
+    </div>
+    <div class="d-flex justify-content-center">
+        <img src="assets/images/Thorloge.jpg" alt="" class="col-3 mt-3">
+    </div>
+    <div>
+        <div class="my-4 text-center">
+            <h5 class="fw-bold">A toi de jouer!</h5>
+            <p>La restauration date de  </p>
+            <div class="text-center">
+                <button class="me-2 button_blue" (click)="rightOne()">1830</button>
+                <button class="me-2 button_blue" (click)="wrongOne()">2002</button>
+                <button class="button_blue" (click)="wrongOne()">1765</button>
+                <p *ngIf="rightAnswer1">Bravo!🎉</p>
+                <p *ngIf="wrongAnswer1">Mauvaise réponse😒</p>
+            </div>
+            <p class="mt-4">La tour de l'horloge était, auparavent, la mairie </p>
+            <div class="text-center">
+                <button class="me-2 button_blue" (click)="rightTwo()">Vrai</button>
+                <button class="me-2 button_blue" (click)="wrongTwo()">Faux</button>
+                <p *ngIf="rightAnswer2">Oui, jusqu'au XIXème siècle🎉</p>
+                <p *ngIf="wrongAnswer2">Mauvaise réponse😒</p>
+            </div>
+            <p class="mt-4">Combien y a t il de marches pour acceder au belvédière</p>
+            <img src="assets/images/belvediere.jpg" alt="" class="col-3 mb-3">
+           
+            <div class="text-center">
+                <button class="me-2 button_blue" (click)="wrongThree()">403</button>
+                <button class="me-2 button_blue" (click)="rightThree()">141</button>
+                <button class="button_blue" (click)="wrongThree()">174</button>
+                <p *ngIf="rightAnswer3">Bravo!🎉</p>
+                <p *ngIf="wrongAnswer3">Mauvaise réponse😒</p>
+            </div>
+    </div>
+</div>

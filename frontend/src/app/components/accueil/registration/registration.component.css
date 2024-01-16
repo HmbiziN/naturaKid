@@ -1,0 +1,39 @@
+input{
+    width: 290px;
+}
+.error{
+    color: red;
+    font-size: 12px;
+}
+     
+#homePicture{ 
+    width: 100%;
+ }
+.pr{
+    position: relative;
+}
+.pa{
+    position: absolute;
+    top: 40%;
+}
+.div-form{
+    display: block;
+}
+h5{
+    font-size: 52px;
+    font-weight: bold;
+}
+@media(max-width:769px){
+    #homePicture{
+        display: none;
+    }
+    }
+@media(max-width:769px){
+    .pa{
+        position: relative;
+    top: 50%;
+left: 0;        }
+        }
+input{
+    margin: 5px auto
+}
